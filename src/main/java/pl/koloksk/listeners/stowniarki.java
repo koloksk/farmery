@@ -20,7 +20,6 @@ public class stowniarki implements Listener {
         final Location loc1 = new Location(blok.getWorld(), blok.getX(), blok.getY() - 1.0D, blok.getZ());
         if (blok.getType() == Material.STONE) {
             if(loc1.getBlock().getType() == Material.ENDER_STONE) {
-                e.getPlayer().sendMessage("1");
                 Bukkit.getScheduler().runTaskLater(main.getinstance(), new Runnable() {
                     public void run() {
                         if (loc1.getBlock().getType() == Material.ENDER_STONE)

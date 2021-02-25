@@ -97,7 +97,6 @@ public class Menu {
 
     public static void build() {
         Menu.effectmenu = Bukkit.createInventory(null, 36, ColorUtil.fixColors(" &8» &9Efekty"));
-        final int i = -1;
         Menu.effectmenu.setItem(0, Menu.blank);
         Menu.effectmenu.setItem(1, Menu.blank);
         Menu.effectmenu.setItem(2, Menu.blank);

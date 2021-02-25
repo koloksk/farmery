@@ -14,20 +14,20 @@ import java.util.logging.Level;
 public class changeslots implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!sender.hasPermission("changeslots.admin")) {
-            sender.sendMessage(getConfigString("NoPermission"));
+            sender.sendMessage(getConfigString("messsage.NoPermission"));
             return true;
         }
         if (args.length == 0) {
-            sender.sendMessage(getConfigString("NoArgument"));
+            sender.sendMessage(getConfigString("messsage.NoArgument"));
             return true;
         }
         try {
             changeSlots(Integer.parseInt(args[0]));
-            sender.sendMessage(getConfigString("Success").replace("%n", args[0]));
+            sender.sendMessage(getConfigString("messsage.Success").replace("%n", args[0]));
         } catch (NumberFormatException e) {
-            sender.sendMessage(getConfigString("NoNumber"));
+            sender.sendMessage(getConfigString("messsage.NoNumber"));
         } catch (ReflectiveOperationException e) {
-            sender.sendMessage(getConfigString("Error"));
+            sender.sendMessage(getConfigString("messsage.Error"));
             Bukkit.getLogger().log(Level.SEVERE, "An error occurred while updating max players", e);
         }
         return true;
