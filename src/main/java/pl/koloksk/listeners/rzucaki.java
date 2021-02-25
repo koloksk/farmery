@@ -36,7 +36,7 @@ public class rzucaki implements Listener {
         FileConfiguration config = main.getinstance().getConfig();
         Player p = e.getPlayer();
         if (e.getMaterial() == Material.TNT && e.getItem().getItemMeta().getDisplayName() != null)
-            if (e.getItem().getItemMeta().getDisplayName().equals(config.getString("Rzucaki.nazwa").replaceAll("&", ""))) {
+            if (e.getItem().getItemMeta().getDisplayName().equals(config.getString("Rzucaki.nazwa").replaceAll("&", "§"))) {
                 if (e.getAction() == Action.RIGHT_CLICK_AIR) {
                     p.getLocation().setY(p.getLocation().getY() + 1.0D);
                     Entity entity;

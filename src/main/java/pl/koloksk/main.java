@@ -105,7 +105,7 @@ public final class main extends JavaPlugin implements Listener {
 
             }
 
-            if (!e.isCancelled() && e.getItemInHand().hasItemMeta() && e.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GREEN + "SandFarmer")) {
+            if (e.getItemInHand().hasItemMeta() && e.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GREEN + "SandFarmer")) {
                 e.getBlock().setType(Material.AIR);
                 for (int i = 3; i < e.getBlock().getY(); i++) {
                     Block b = Bukkit.getWorld("world").getBlockAt(e.getBlock().getX(), i, e.getBlock().getZ());
@@ -115,7 +115,7 @@ public final class main extends JavaPlugin implements Listener {
 
                 }
             }
-            if (!e.isCancelled() && e.getItemInHand().hasItemMeta() && e.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GREEN + "BoyFarmer")) {
+            if (e.getItemInHand().hasItemMeta() && e.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GREEN + "BoyFarmer")) {
                 e.getBlock().setType(Material.AIR);
                 for (int i = 3; i < e.getBlock().getY(); i++) {
                     Block b = Bukkit.getWorld("world").getBlockAt(e.getBlock().getX(), i, e.getBlock().getZ());
@@ -125,7 +125,7 @@ public final class main extends JavaPlugin implements Listener {
 
                 }
             }
-            if (!e.isCancelled() && e.getItemInHand().hasItemMeta() && e.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GREEN + "Kopacz fos")) {
+            if (e.getItemInHand().hasItemMeta() && e.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GREEN + "Kopacz fos")) {
                 e.getBlock().setType(Material.AIR);
                 for (int i = 3; i < e.getBlock().getY(); i++) {
                     Block b = Bukkit.getWorld("world").getBlockAt(e.getBlock().getX(), i, e.getBlock().getZ());

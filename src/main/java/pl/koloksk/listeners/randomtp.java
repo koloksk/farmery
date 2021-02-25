@@ -38,7 +38,7 @@ public class randomtp implements Listener {
             Location loc = new Location(e.getPlayer().getWorld(), x, p.getWorld().getHighestBlockYAt((int) x, (int) z) + 2, z);
             if (e.getAction() == Action.RIGHT_CLICK_BLOCK && e.getClickedBlock().getType() == Material.STONE_BUTTON && (b1.getType() == Material.SPONGE || b2.getType() == Material.SPONGE || b3.getType() == Material.SPONGE || b4.getType() == Material.SPONGE)) {
                 p.teleport(loc);
-                p.sendMessage(config.getString("message.teleportacja").replaceAll("&", ""));
+                p.sendMessage(config.getString("message.teleportacja").replaceAll("&", "§"));
                 p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 200, 2));
                 p.playSound(p.getLocation(), Sound.FIREWORK_TWINKLE2, 1.0F, 1.0F);
 

@@ -2,20 +2,15 @@ package pl.koloksk.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffectType;
 import pl.koloksk.Menu;
 import pl.koloksk.utils.giveeffect;
@@ -25,8 +20,7 @@ public class listeners implements Listener {
     public void onInvClick(InventoryClickEvent e) {
         if (e.getSlotType().equals(InventoryType.SlotType.OUTSIDE))
             return;
-        if (e.getCurrentItem().equals(null))
-            return;
+        e.getCurrentItem();
         if (e.getInventory().getTitle().equals(Menu.effectmenu.getTitle())) {
             e.setCancelled(true);
             Player p = (Player) e.getWhoClicked();
@@ -66,43 +60,6 @@ public class listeners implements Listener {
         }
     }
 
-    @EventHandler
-    public void onPlace(BlockPlaceEvent e) {
-        Player p = e.getPlayer();
-        if (e.getItemInHand() == null)
-            return;
-        if (e.getBlock().getType().equals(Material.TNT)) {
-            if (e.getItemInHand().getItemMeta().getDisplayName() == null)
-                return;
-            if (e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals("TNT")) {
-                e.setCancelled(true);
-                p.sendTitle("§cTNT musisz rzucic", "");
-
-            }
-        }
-    }
-
-    @EventHandler
-    public void onPlayerInteract(PlayerInteractEvent e) {
-        Player p = e.getPlayer();
-        if (e.getMaterial() == Material.TNT && e.getItem().getItemMeta().getDisplayName() != null)
-            if (e.getItem().getItemMeta().getDisplayName().equals("§cRzucane TNT")) {
-            if (e.getAction() == Action.RIGHT_CLICK_AIR) {
-                p.getLocation().setY(p.getLocation().getY() + 1.0D);
-                Entity entity;
-                entity = p.getWorld().spawn(p.getLocation(), TNTPrimed.class);
-                entity.setVelocity(
-                        p.getLocation().getDirection().multiply(1.1));
-                if (p.getItemInHand().getAmount() > 1) {
-                    p.getItemInHand().setAmount(p.getItemInHand().getAmount() - 1);
-                } else {
-                    p.setItemInHand(null);
-                }
-            }
-        } else{
-            e.setCancelled(true);
-        }
-    }
 /*    @EventHandler
     public void onPlayerPrepareCrafting(PrepareItemCraftEvent e) {
             // this is our custom item - make sure all three ingredients are found
