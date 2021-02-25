@@ -1,0 +1,7 @@
+name: farmery
+version: ${project.version}
+main: pl.koloksk.farmery
+commands:
+  efekty:
+  pomoc:
+  changeslots:

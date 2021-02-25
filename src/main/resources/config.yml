@@ -1,0 +1,10 @@
+Rzucaki:
+  nazwa: "Rzucane TNT"
+  szybkosc: 10
+pomoc:
+  - "sssss"
+  - "sssss"
+antynogi:
+  name: "antynogi"
+message:
+  teleportacja: "teleportacja"
