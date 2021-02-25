@@ -15,6 +15,7 @@ public class antynogi implements Listener {
             for (Entity p1 : p.getNearbyEntities(p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ())) {
                 if (e instanceof Player) {
                     if (p.getLocation().distance(p1.getLocation()) <= 5.0D) {
+                        p.getInventory().remove(e.getItem());
                         p.teleport(p1);
                         break;
                     }

@@ -30,7 +30,7 @@ public final class main extends JavaPlugin implements Listener {
         boyfarmer();
         sandfarmer();
         Bukkit.getPluginManager().registerEvents(this, this);
-        Bukkit.getPluginManager().registerEvents(new listeners(), this);
+        Bukkit.getPluginManager().registerEvents(new menuListeners(), this);
         Bukkit.getPluginManager().registerEvents(new stowniarki(), this);
         Bukkit.getPluginManager().registerEvents(new rzucaki(), this);
         Bukkit.getPluginManager().registerEvents(new antynogi(), this);

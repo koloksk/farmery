@@ -15,7 +15,7 @@ import org.bukkit.potion.PotionEffectType;
 import pl.koloksk.Menu;
 import pl.koloksk.utils.giveeffect;
 
-public class listeners implements Listener {
+public class menuListeners implements Listener {
     @EventHandler
     public void onInvClick(InventoryClickEvent e) {
         if (e.getSlotType().equals(InventoryType.SlotType.OUTSIDE))
@@ -81,23 +81,7 @@ public class listeners implements Listener {
 
 
     }*/
-    @EventHandler(priority = EventPriority.LOW)
-    public void ontnt(EntityExplodeEvent e){
-        if(e.isCancelled()){ return;}
-        if ( e.getEntity().getLocation().getY() >= 50){
-            e.setCancelled(true);
-        }
 
-        if( e.getEntity().getType() == EntityType.PRIMED_TNT && e.getEntity().getLocation().getBlock().getType() == Material.STATIONARY_WATER){
-            if(!e.isCancelled()) {
-                e.getEntity().getLocation().getBlock().setType(Material.STONE);
-                Bukkit.getWorld("world").createExplosion(e.getEntity().getLocation(), 5);
-            }
-        }
-    }
-    @EventHandler
-    public void deathevent(PlayerDeathEvent e){
-        e.setDeathMessage(null);
-    }
+
 }
 
