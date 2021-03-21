@@ -65,6 +65,11 @@
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
+        <repository>
+            <id>panda-repository</id>
+            <name>Panda Repository</name>
+            <url>https://repo.panda-lang.org/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -73,6 +78,11 @@
             <artifactId>spigot-api</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.dzikoysk</groupId>
+            <artifactId>funnyguilds</artifactId>
+            <version>4.9.3</version>
         </dependency>
     </dependencies>
 </project>

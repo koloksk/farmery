@@ -1,6 +1,6 @@
 name: farmery
 version: ${project.version}
-main: pl.koloksk.farmery
+main: pl.koloksk.main
 commands:
   efekty:
   pomoc:

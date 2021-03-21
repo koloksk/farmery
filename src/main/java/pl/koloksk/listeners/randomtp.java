@@ -1,4 +1,4 @@
-package pl.koloksk.listeners;
+/*package pl.koloksk.listeners;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -46,4 +46,4 @@ public class randomtp implements Listener {
         }
 
     }
-}
+}*/

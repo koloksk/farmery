@@ -1,5 +1,9 @@
 package pl.koloksk;
 
+import net.dzikoysk.funnyguilds.FunnyGuilds;
+import net.dzikoysk.funnyguilds.basic.guild.Guild;
+import net.dzikoysk.funnyguilds.basic.guild.GuildUtils;
+import net.dzikoysk.funnyguilds.event.guild.ally.GuildBreakAllyEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -29,12 +33,13 @@ public final class main extends JavaPlugin implements Listener {
         kopaczfos();
         boyfarmer();
         sandfarmer();
+
         Bukkit.getPluginManager().registerEvents(this, this);
         Bukkit.getPluginManager().registerEvents(new menuListeners(), this);
         Bukkit.getPluginManager().registerEvents(new stowniarki(), this);
         Bukkit.getPluginManager().registerEvents(new rzucaki(), this);
-        Bukkit.getPluginManager().registerEvents(new antynogi(), this);
-        Bukkit.getPluginManager().registerEvents(new randomtp(), this);
+        //Bukkit.getPluginManager().registerEvents(new antynogi(), this);
+        //Bukkit.getPluginManager().registerEvents(new randomtp(), this);
         Bukkit.getPluginManager().registerEvents(new joinquit(), this);
 
 
@@ -52,7 +57,7 @@ public final class main extends JavaPlugin implements Listener {
     public void kopaczfos(){
         ItemStack item = new ItemStack(Material.STONE);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(ChatColor.GREEN + "Kopacz fos");
+        meta.setDisplayName("§8§l>> §7§lKopaczFosy §8§l<<");
         item.setItemMeta(meta);
 
         ShapedRecipe recipe = new ShapedRecipe(item);
@@ -62,9 +67,9 @@ public final class main extends JavaPlugin implements Listener {
         Bukkit.addRecipe(recipe);
     }
     public void boyfarmer(){
-        ItemStack item = new ItemStack(Material.ENDER_PORTAL_FRAME);
+        ItemStack item = new ItemStack(Material.OBSIDIAN);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(ChatColor.GREEN + "BoyFarmer");
+        meta.setDisplayName("§1§l>> §9§lBoyFarmer §1§l<<");
         item.setItemMeta(meta);
 
         ShapedRecipe recipe = new ShapedRecipe(item);
@@ -76,7 +81,7 @@ public final class main extends JavaPlugin implements Listener {
     public void sandfarmer(){
         ItemStack item = new ItemStack(Material.SANDSTONE);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(ChatColor.GREEN + "SandFarmer");
+        meta.setDisplayName("§6§l>> §e§lSandFarmer §6§l<<");
         item.setItemMeta(meta);
 
         ShapedRecipe recipe = new ShapedRecipe(item);
@@ -86,56 +91,66 @@ public final class main extends JavaPlugin implements Listener {
         Bukkit.addRecipe(recipe);
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler
     public void blockp(BlockPlaceEvent e){
-        Border border = new Border(new Vector(173.5, 1, 140.5), new Vector(-125.5, 255, -160.5));
+/*        Border border = new Border(new Vector(173.5, 1, 140.5), new Vector(-125.5, 255, -160.5));
         if (border.contains(e.getPlayer().getLocation()) && !e.getPlayer().isOp()) {
             e.setCancelled(true);
             return;
-        }
+        }*/
+        if(e.isCancelled()){return;}
+                    if (e.getBlock().getType() == Material.CHEST && e.getBlock().getY() > 50) {
+                        e.setCancelled(true);
 
+                    }
+                    if (e.getBlock().getType() == Material.TNT && e.getBlock().getY() > 50) {
+                        e.setCancelled(true);
 
-        if(!e.isCancelled()) {
-            if (e.getBlock().getType() == Material.CHEST && e.getBlock().getY() > 50) {
-                e.setCancelled(true);
-
-            }
-            if (e.getBlock().getType() == Material.TNT && e.getBlock().getY() > 50) {
-                e.setCancelled(true);
-
-            }
-
-            if (e.getItemInHand().hasItemMeta() && e.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GREEN + "SandFarmer")) {
-                e.getBlock().setType(Material.AIR);
-                for (int i = 3; i < e.getBlock().getY(); i++) {
-                    Block b = Bukkit.getWorld("world").getBlockAt(e.getBlock().getX(), i, e.getBlock().getZ());
-                    if (b.getType() != Material.BEDROCK) {
-                        b.setType(Material.SAND);
                     }
 
-                }
-            }
-            if (e.getItemInHand().hasItemMeta() && e.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GREEN + "BoyFarmer")) {
-                e.getBlock().setType(Material.AIR);
-                for (int i = 3; i < e.getBlock().getY(); i++) {
-                    Block b = Bukkit.getWorld("world").getBlockAt(e.getBlock().getX(), i, e.getBlock().getZ());
-                    if (b.getType() != Material.BEDROCK) {
-                        b.setType(Material.OBSIDIAN);
+                    if (e.getItemInHand().hasItemMeta() && e.getItemInHand().getItemMeta().getDisplayName().equals("§6§l>> §e§lSandFarmer §6§l<<")) {
+                        for(Guild i:GuildUtils.getGuilds()) {
+                            if (i.getRegion().isIn(e.getBlock().getLocation())) {
+                                e.getBlock().setType(Material.SAND);
+                                for (int a = 3; a < e.getBlock().getY(); a++) {
+                                    Block b = Bukkit.getWorld("world").getBlockAt(e.getBlock().getX(), a, e.getBlock().getZ());
+                                    if (b.getType() != Material.BEDROCK) {
+                                        b.setType(Material.SAND);
+                                    }
+                                }
+                            } else {e.setCancelled(true);}
+                        }
+
+                    }
+                    if (e.getItemInHand().hasItemMeta() && e.getItemInHand().getItemMeta().getDisplayName().equals("§1§l>> §9§lBoyFarmer §1§l<<")) {
+                        for(Guild i:GuildUtils.getGuilds()) {
+                            if (i.getRegion().isIn(e.getBlock().getLocation())) {
+                                for (int a = 3; a < e.getBlock().getY(); a++) {
+                                    Block b = Bukkit.getWorld("world").getBlockAt(e.getBlock().getX(), a, e.getBlock().getZ());
+                                    if (b.getType() != Material.BEDROCK) {
+                                        b.setType(Material.OBSIDIAN);
+                                    }
+                                }
+                            } else {e.setCancelled(true);}
+                        }
+                    }
+                    if (e.getItemInHand().hasItemMeta() && e.getItemInHand().getItemMeta().getDisplayName().equals("§8§l>> §7§lKopaczFosy §8§l<<")) {
+                        for(Guild i:GuildUtils.getGuilds()) {
+                            if (i.getRegion().isIn(e.getBlock().getLocation())) {
+                                e.getBlock().setType(Material.AIR);
+                                for (int a = 3; a < e.getBlock().getY(); a++) {
+                                    Block b = Bukkit.getWorld("world").getBlockAt(e.getBlock().getX(), a, e.getBlock().getZ());
+                                    if (b.getType() != Material.BEDROCK) {
+                                        b.setType(Material.AIR);
+                                    }
+                                }
+                            } else {e.setCancelled(true);}
+                        }
                     }
 
-                }
-            }
-            if (e.getItemInHand().hasItemMeta() && e.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GREEN + "Kopacz fos")) {
-                e.getBlock().setType(Material.AIR);
-                for (int i = 3; i < e.getBlock().getY(); i++) {
-                    Block b = Bukkit.getWorld("world").getBlockAt(e.getBlock().getX(), i, e.getBlock().getZ());
-                    if (b.getType() != Material.BEDROCK) {
-                        b.setType(Material.AIR);
-                    }
 
-                }
-            }
-        }
+
+
     }
     public static main getinstance(){
         return instance;

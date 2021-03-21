@@ -1,4 +1,4 @@
-package pl.koloksk.listeners;
+/*package pl.koloksk.listeners;
 
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -23,4 +23,4 @@ public class antynogi implements Listener {
             }
         }
     }
-}
+}*/
